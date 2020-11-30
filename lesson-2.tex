@@ -1,0 +1,220 @@
+\documentclass[10pt]{beamer}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage{cite,enumerate,float,indentfirst}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\numberwithin{equation}{subsection}
+
+% \hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+\hypersetup{unicode=true}
+
+\graphicspath{{images/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{ifthen}
+\usepackage{subfigure}
+\usepackage{amsthm}
+\usepackage{listings} % code format pasting
+\lstset{language=Mathematica}
+\lstset{basicstyle={\sffamily\scriptsize},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    breaklines=true,
+    captionpos={t},
+    frame={lines},
+    rulecolor=\color{black},
+    framerule=0.5pt,
+    columns=flexible,
+    tabsize=2
+}
+
+% Some themes
+\usetheme{Hannover}
+% \usetheme{Madrid}
+\usefonttheme{professionalfonts}
+
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+
+\title[]{Понятие множества. Понятие функции. Последовательности.}
+\author[]{Абдуллин Рустам Фаритович}
+\institute[НГУ]
+{
+    \vspace{0.5cm}
+    \begin{minipage}{0.6\linewidth}
+        \begin{center}
+            \scriptsize
+            \textbf{ НОВОСИБИРСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ, НГУ}
+        \end{center}
+    \end{minipage}
+}
+\date{\today}
+
+\setbeamertemplate{navigation symbols}{}
+\begin{document}
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \section*{Содержание}
+    \begin{frame}
+        \tableofcontents
+    \end{frame}
+
+    \section{Теория множеств}
+    \begin{frame}
+        \frametitle{Предпосылки}
+        \begin{itemize}
+            \item \href{https://en.wikipedia.org/wiki/Set_theory}{Наивная теория множеств} -- Георг Кантор \\
+                \begin{enumerate}
+                    \item парадокс Кантора
+                    \item парадокс Рассела
+                \end{enumerate}
+            \item Аксиоматические теории множеств (Цермело, Френкель, Борель, Лебег)
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Основные понятия}
+        \begin{itemize}
+            \item Множество -- набор (совокупность) каких-либо объектов, которые называются элементами данного множества. Принадлежность объекта к множеству обозначается
+            $ x \in A$ ($x$ -- элемент множества $A$).
+            \item Множество, которое не имеет элементов, называется пустым $\varnothing $.
+            \item Множество $A$ -- подмножество множества $B$ ($A \subseteq B$), если для любого элемента $x \in A$ верно $x \in B$.
+            \item $A$ -- строгое подмножество $B$ ($A \subset B$), если $A \subseteq B$ и существует $y \in B$, такой что $y \notin A$.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Основные операции над множествами}
+        \begin{itemize}
+            \item \textbf{объединение}, обозначается как $A \cup B$, содержит все элементы из $A$ и $B$ 
+            \item \textbf{пересечение}, обозначается как $A \cap B$, содержит элементы, содержащиеся и в $A$, и в $B$
+            \item \textbf{разность}, обозначается как $A \setminus B$, содержит все элементы из $A$, которые не входят в $B$
+        \end{itemize}
+        \begin{block}{Теорема 1}
+            \phantomsection
+            \label{th:th1}
+            Если верно $A \subseteq M$ и $B \subseteq M$, то $(M \setminus A) \cup (M \setminus B) = M \setminus (A \cap B)$ и $(M \setminus A) \cap (M \setminus B) = M \setminus (A \cup B)$
+        \end{block}
+    \end{frame}
+
+    \section{Отображение (функция)}
+    \begin{frame}
+        \frametitle{Основные определения}
+        см. \textit{Лекции + рукопись}
+        \begin{itemize}
+            \item Понятие функции
+            \item Область определения (область существования) функции
+            \item Область значений функции
+            \item Образ функции (\textit{в чем разница с областью значений})
+        \end{itemize}
+    \end{frame}
+
+    \section{Последова-тельность}
+    \begin{frame}
+        \frametitle{Последовательность}
+        \begin{itemize}
+            \item \textit{Последовательность} -- пронумерованный набор объектов (допускаются повторения)
+            \item \textbf{Последовательность} -- всякое отображение $f: \mathbb{N} \rightarrow X$
+            \item \textbf{Числовая последовательность} -- последовательность, где $X = \mathbb{R}$ ($\{x_n\}_{n=1}^\infty$)
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Предел последовательности}
+        \begin{block}{Определение 1}
+            \small
+            Число $a$ -- является пределом числовой последовательности $\{x_n\}_{n=1}^\infty$, обозначается $\displaystyle\lim_{n \rightarrow \infty} x_n = a$, 
+            если $\forall \varepsilon > 0 \; \exists N \in \mathbb{N}\;|\;\forall n > N$ верно $\left| x_n - a \right| < \varepsilon $.
+        \end{block} 
+        \begin{block}{Определение 2}
+            \small
+            Если для элементов последовательностей $\{x_n\}_{n=1}^\infty$, $\{a_n\}_{n=1}^\infty$, $\{b_n\}_{n=1}^\infty$ верно $a_n \leq x_n \leq b_n$ и 
+            $\displaystyle\lim_{n \rightarrow \infty} a_n = \lim_{n \rightarrow \infty} b_n = c$, то $\lim_{n \rightarrow \infty} x_n =c$
+        \end{block} 
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Примеры}
+        \begin{itemize}
+            \item $\displaystyle\lim_{n \rightarrow \infty} n = \infty $;
+            \item $\displaystyle\lim_{n \rightarrow \infty} \frac{1}{n} = 0$;
+            \item $\displaystyle\lim_{n \rightarrow \infty} \frac{x^m+1}{x^n+1} = 0 $, если $m<n$;
+            \item $\displaystyle\lim_{n \rightarrow \infty} \left(1+\frac{1}{n}\right)^n = e $.
+        \end{itemize}
+    \end{frame}
+
+    \section{Теория пределов. Непрерывность.}
+
+    \begin{frame}[fragile]
+        \frametitle{Определения}
+        \begin{block}{Предел функции в точке}
+            \footnotesize
+            $\displaystyle\lim_{x \rightarrow a} f(x) = A$, если $\forall \varepsilon>0 \; \exists \delta = \delta(\varepsilon)$, 
+            такое что для всех $x$ из области определения функции и удовлетворяющих условию $0<|x-a|<\delta$ выполняется
+            $|f(x)-A| < \varepsilon$.
+        \end{block}
+        \begin{block}{Предел слева}
+            \footnotesize
+            $\displaystyle\lim_{x \rightarrow a-0} f(x) = A^\prime$, если $\forall \varepsilon>0 \; \exists \delta = \delta(\varepsilon)$, 
+            такое что для всех $x$ из области определения функции и удовлетворяющих условию $0<a-x<\delta$ (или тоже самое $(a-\delta<x<a)$) выполняется
+            $|f(x)-A^\prime| < \varepsilon$.
+        \end{block}
+        \begin{block}{Предел справа}
+            \footnotesize
+            $\displaystyle\lim_{x \rightarrow a+0} f(x) = A^{\prime\prime}$, если $\forall \varepsilon>0 \; \exists \delta = \delta(\varepsilon)$, 
+            такое что для всех $x$ из области определения функции и удовлетворяющих условию $0<x-a<\delta$ (или тоже самое $(a<x<a+\delta)$) выполняется
+            $|f(x)-A^{\prime\prime}| < \varepsilon$.
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Непрерывность}
+        Предел функции существует, тогда и только тогда, когда $A^\prime = A^{\prime\prime}$
+        Виды разрыва в точке
+        \begin{itemize}
+            \item \textbf{Устранимый}, если $A^\prime = A^{\prime\prime}$
+            \item \textbf{Разрыв первого рода}, если $A^\prime \neq  A^{\prime\prime}$ и $A^\prime - A^{\prime\prime} < \infty$
+            \item \textbf{Разрыв второго рода}, если $A^\prime \neq  A^{\prime\prime}$ и хотя бы один из пределов равен $\infty$
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Примеры}
+        \begin{itemize}
+            \item Если функция непрерывна в точке, то предел функции к этой точке равен значению функции в этой точке
+            \item $\displaystyle f(x) = \frac{x^2 - 1}{x-1}$ в точке $x=1$
+            \item $f(x) = \operatorname{sgn}(x)$
+            \item $\displaystyle f(x) = \frac{1}{x}$
+            \item замечательные пределы:
+            \begin{enumerate}
+                \item $\displaystyle\lim_{x \rightarrow 0} \frac{\sin x}{x} = 1$
+                \item $\displaystyle\lim _{{x\to \infty }}\left(1+{\frac  {1}{x}}\right)^{x}=e$.
+            \end{enumerate}
+        \end{itemize}
+    \end{frame}
+
+    \section{Homework}
+    \begin{frame}
+        \frametitle{Homework}
+        \begin{itemize}
+            \item \textit{Демидович. Сборник задач и упражнений по математическому анализу.} № 1, 2, 3, 4, 6, 7, 151, 152, 160, 166, 168, 175
+            \item Доказать \hyperlink{th:th1}{теорему 1}
+        \end{itemize}
+    \end{frame}
+
+\end{document}
